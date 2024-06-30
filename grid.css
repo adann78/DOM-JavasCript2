@@ -1,0 +1,35 @@
+.principal{
+    margin: 0 auto;
+    width: 80%;
+    height: 80vh;
+    background-color:#222;
+    border: medium solid #000;
+    display: grid;
+    
+  }
+  .item {
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #666;
+    border: medium solid #999;
+    
+  }
+  .grid-implicit{
+    /*4c*4r*/
+    width:100%;
+    display: grid;
+    display: inline-grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3,200px);
+  }
+  
+  .grid-implicit .item:nth-child(1){
+    color:cyan;
+    grid-row:1/span 2;
+    grid-column: 1/span 3;
+  }
+  .grid-implicit .item:nth-child(2){
+    color:cyan;
+    grid-row:3/span 3;
+    grid-column: 1/span 3;
+  }
