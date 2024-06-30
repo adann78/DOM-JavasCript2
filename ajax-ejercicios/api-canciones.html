@@ -66,6 +66,36 @@
     $main=d.querySelector("main"),
     $artist=d.querySelector(".artist"),
     $song=d.querySelector(".song");
+    $form.addEventListener("submit", async e=>{
+        e.preventDefault();
+    
+    try{
+        $loader.style.display="block";
+        let artist=e.target.artist.value.toLowerCase(),
+            song=e.target.song.value.toLowerCase(),
+            $artistTemplate="",
+            $songTemplate="",
+            artistAPI=` https://www.theaudiodb.com/api/v1/json/2/search.php?s=${artist}`,
+            songAPI=`https://api.lyrics.ovh/v1/${artist}/${song}`,
+            artistFetch=fetch(artistAPI),
+            songFetch=fetch(songAPI),
+            [artistRes,songRes]=await Promise.all([artistFetch, songFetch]),
+            artistData = await artistRes.json(),
+            songData = await songRes.json();
+            
+            console.log(artistRes, songRes);
+            console.log(artistData, songData);
+    
+    }catch (err){
+        console.log(err);
+        
+        let message=err.statusText || "Ocurrió un error";
+        $error.innerHTML=`<p>Error ${err.status}: ${message}</p>`
+        $loader.style.display="none";
+    }
+
+
+    });
   </script>
 </body>
 
